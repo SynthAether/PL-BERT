@@ -21,6 +21,7 @@ conda create --name BERT python=3.8
 conda activate BERT
 conda install ipykernel   
 python -m ipykernel install --user --name BERT --display-name "BERT"
+conda install -c conda-forge jupyterlab notebook
 ```
 4. Install python requirements: 
 ```bash
