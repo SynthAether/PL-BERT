@@ -27,6 +27,6 @@ class TextCleaner:
             try:
                 indexes.append(self.word_index_dictionary[char])
             except KeyError:
-                indexes.append(self.word_index_dictionary['U']) # unknown token
+                indexes.append(self.word_index_dictionary['<UNK>']) # unknown token
 #                 print(char)
         return indexes
