@@ -23,6 +23,27 @@ logger.setLevel(logging.DEBUG)
 
 np.random.seed(1)
 random.seed(1)
+def create_attention_mask(input_lengths, max_length=None):
+    """
+    Create attention masks for a batch of sequences.
+
+    Args:
+        input_lengths (list): List of input lengths for each sequence in the batch.
+        max_length (int, optional): Maximum sequence length. If None, inferred from input_lengths.
+
+    Returns:
+        torch.Tensor: Attention mask of shape (batch_size, max_length).
+    """
+    if max_length is None:
+        max_length = max(input_lengths)
+
+    batch_size = len(input_lengths)
+    attention_mask = torch.zeros((batch_size, max_length), dtype=torch.bool)
+
+    for i, length in enumerate(input_lengths):
+        attention_mask[i, :length] = 1  # Set mask to 1 for valid positions
+
+    return attention_mask
 
 class FilePathDataset(torch.utils.data.Dataset):
     def __init__(self, dataset,
